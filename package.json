@@ -8,7 +8,8 @@
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "typescript": "^5.1.6",
-    "web-vitals": "^3.0.4"
+    "web-vitals": "^3.0.4",
+    "@aeternity/aepp-sdk": "13.2.1"
   },
   "scripts": {
     "start": "PORT=4000 react-scripts start",
