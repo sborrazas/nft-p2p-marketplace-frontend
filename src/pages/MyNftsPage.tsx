@@ -30,11 +30,9 @@ export default function MyNftsPage() {
     void load()
   }, [dispatch])
 
-  console.log(nfts)
-
   return (
     <div>
-      <h1>My NFTs (wallet {wallet.isLoading ? "unknown" : wallet.wallet})</h1>
+      <h1>My NFTs (wallet {wallet.wallet ? wallet.wallet : "unknown"})</h1>
       <ul>
         {nfts.data.map(({ contract_id, owner_id, token_id }) => {
           return (
