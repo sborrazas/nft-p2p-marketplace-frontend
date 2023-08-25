@@ -1,14 +1,21 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux"
+import { RouterProvider } from "react-router-dom";
+import reportWebVitals from "./reportWebVitals";
+import { sendToVercelAnalytics } from "./vitals";
+import store from "./store"
+import router from "./router"
 
 import "./index.css";
-import App from "./App";
+
+
+reportWebVitals(sendToVercelAnalytics);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+   <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
