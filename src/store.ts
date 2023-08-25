@@ -1,9 +1,13 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
 import auctionsSlice from "./slices/auctionsSlice"
+import nftsSlice from "./slices/nftsSlice"
+import walletSlice from "./slices/walletSlice"
 
 const store = configureStore({
   reducer: {
-    auctions: auctionsSlice.reducer
+    auctions: auctionsSlice.reducer,
+    nfts: nftsSlice.reducer,
+    wallet: walletSlice.reducer
   },
 })
 
