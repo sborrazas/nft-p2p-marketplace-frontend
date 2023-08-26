@@ -4,7 +4,8 @@ import {
 } from "react-router-dom"
 import { Route } from "react-router"
 
-import AuctionsPage from './pages/AuctionsPage';
+import AllAuctionsPage from './pages/AllAuctionsPage';
+import MyAuctionsPage from './pages/MyAuctionsPage';
 import MyNftsPage from "./pages/MyNftsPage";
 
 const FallbackRoute = () => {
@@ -14,7 +15,8 @@ const FallbackRoute = () => {
 export default createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" errorElement={<FallbackRoute />}>
-      <Route index element={<AuctionsPage />} />
+      <Route index element={<AllAuctionsPage />} />
+      <Route path="/auctions" element={<MyAuctionsPage />} />
       <Route path="/nfts" element={<MyNftsPage />} />
     </Route>
   )

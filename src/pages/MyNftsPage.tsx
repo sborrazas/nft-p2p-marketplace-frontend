@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { selectNfts, load as loadNfts, loadSuccess as loadNftsSuccess } from "../slices/nftsSlice"
 import { selectWallet, load as loadWallet, loadSuccess as loadWalletSuccess } from "../slices/walletSlice"
 import { useAppDispatch, useAppSelector } from "../hooks"
-import { getAccountNfts } from "../middleware"
+import { getAccountNfts, Nft } from "../middleware"
 import { getWallet } from "../aeternity"
 
 export default function MyNftsPage() {
@@ -34,7 +34,7 @@ export default function MyNftsPage() {
     <div>
       <h1>My NFTs (wallet {wallet.wallet ? wallet.wallet : "unknown"})</h1>
       <ul>
-        {nfts.data.map(({ contract_id, owner_id, token_id }) => {
+        {nfts.data.map(({ contract_id, owner_id, token_id } : Nft) => {
           return (
             <li key={`${contract_id}-${token_id}`}>Contract: {contract_id}. Owner: {owner_id}. Token: {token_id}</li>
           )
