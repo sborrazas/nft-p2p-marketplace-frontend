@@ -14,8 +14,12 @@ export type TokenId = number
 export type Nft = {
   contract_id: Account,
   owner_id: Account,
-  token_id: TokenId
+  token_id: TokenId,
 }
+
+export type MetadataIdentifier = string | number
+export type MetadataMap = {url: string | null} | {map: string | null}
+export type Metadata = MetadataIdentifier | MetadataMap
 
 export type CallTxArg = {
   type: string,
@@ -44,11 +48,12 @@ export type Auction = {
   price: number
 }
 
+export const WALLET="ak_ZzSn4fxw1VUfiiZmwtVi8pHaLVsMj8HerNZ1L9nmwFF4vvccd"
 const MIDDLEWARE_URL = "https://staging.mdw.testnet.aeternity.io/mdw"
 const MARKETPLACE = "ct_2McYmJxUXksgHRNH5ziZxepNa76sNB3JpNSc2VJQSkjYxafHbT"
 
-export const getAccountNfts = async (accountId: Account): Promise<Response<Array<Nft>>> => {
-  const response = await fetch(`${MIDDLEWARE_URL}/v2/aex141/owned-nfts/${accountId}`)
+export const getMetadata = async (contractId: Account, tokenId : TokenId): Promise<Response<Metadata>> => {
+  const response = await fetch(`${MIDDLEWARE_URL}/v2/aex141/${contractId}/metadata/${tokenId}`)
   const content = await response.json()
   if (response.ok) {
     return { success: true, data: content.data }
@@ -57,8 +62,17 @@ export const getAccountNfts = async (accountId: Account): Promise<Response<Array
   }
 }
 
+export const getAccountNfts = async (accountId: Account): Promise<Response<Array<Nft>>> => {
+  const response = await fetch(`${MIDDLEWARE_URL}/v2/aex141/owned-nfts/${accountId}`)
+  const content = await response.json()
+  if (response.ok) {
+    return { success: true, data: content.data}
+  } else {
+    return { success: false, error: content.error }
+  }
+}
+
 export const getAuctions = async (accountId: Account): Promise<Response<Array<Auction>>> => {
-  console.log(`wallet: ${accountId}`)
   const nfts = await getAccountNfts(accountId)
   const response = await fetch(`${MIDDLEWARE_URL}/v2/entities/nft_auction?contract=${MARKETPLACE}`)
   const content = await response.json()
