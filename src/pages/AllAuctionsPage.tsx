@@ -1,23 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from "../hooks"
 import { getAuctions, Auction } from "../middleware"
+import { load as loadAuctions, loadSuccess as loadAuctionsSuccess, selectAuctions } from '../slices/auctionsSlice';
+import { selectWallet, load as loadWallet, loadSuccess as loadWalletSuccess } from "../slices/walletSlice"
+import { getWallet } from "../aeternity"
 
 export default function AllAuctionsPage() {
-  const [auctions, setAuctions] = useState<Auction[]>([]);
+  const dispatch = useAppDispatch()
+  const auctions = useAppSelector(selectAuctions)
+  const wallet = useAppSelector(selectWallet)
 
   useEffect(() => {
-    getAuctions("")
-      .then((response) => {
+    const load = async () => {
+      if (wallet.wallet) {
+        dispatch(loadAuctions())
+
+        const response = await getAuctions(wallet.wallet)
+
         if (response.success) {
-          setAuctions(response.data)
-        } else {
-          setAuctions([])
+          dispatch(loadAuctionsSuccess({ auctions: response.data }))
         }
-      });
-  }, []);
+      }
+      else {
+        const wallet = await getWallet()
+
+        dispatch(loadWallet())
+        dispatch(loadWalletSuccess({ wallet }))
+      }
+    }
+
+    void load()
+  }, [dispatch, wallet])
 
   return (
     <ul>
-      {auctions.map((auction : Auction) => {
+      {auctions.data && auctions.data.map((auction : Auction) => {
           const collection = auction.collection
           const token = auction.token
           return (

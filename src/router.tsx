@@ -1,14 +1,13 @@
 import {
   createRoutesFromElements,
   createBrowserRouter,
-  Outlet, 
-  Link 
+  Outlet,
+  Link
 } from "react-router-dom"
 import { Route } from "react-router"
 
 import AllAuctionsPage from './pages/AllAuctionsPage';
 import MyAuctionsPage from './pages/MyAuctionsPage';
-import MyNftsPage from "./pages/MyNftsPage";
 import WalletNftsPage from "./pages/WalletNftsPage";
 
 const FallbackRoute = () => {
@@ -29,9 +28,6 @@ const Layout = () => {
           </li>
           <li>
             <Link to="/nfts">My NFTS</Link>
-          </li>
-          <li>
-            <Link to="/wallet-nfts">Wallet NFTS</Link>
           </li>
           <li>
             <Link to="/auctions">My Auctions</Link>
@@ -56,12 +52,10 @@ export default createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
-      <Route path="/nfts" element={<MyNftsPage />} />
-      <Route path="/wallet-nfts" element={<WalletNftsPage />} />
+      <Route path="/nfts" element={<WalletNftsPage />} />
       <Route path="/auctions" element={<MyAuctionsPage />} />
       <Route path="/all-auctions" element={<AllAuctionsPage />} />
       <Route path="*" element={<FallbackRoute />} />
     </Route>
   )
 )
-

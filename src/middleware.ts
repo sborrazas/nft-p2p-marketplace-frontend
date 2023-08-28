@@ -17,6 +17,10 @@ export type Nft = {
   token_id: TokenId,
 }
 
+export type NftAndMetadata = Nft & {
+  metadata: Metadata
+}
+
 export type MetadataIdentifier = string | number
 export type MetadataMap = {url: string | null} | {map: string | null} | object
 export type Metadata = MetadataIdentifier | MetadataMap
