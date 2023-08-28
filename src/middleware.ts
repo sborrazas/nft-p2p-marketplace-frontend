@@ -18,7 +18,7 @@ export type Nft = {
 }
 
 export type MetadataIdentifier = string | number
-export type MetadataMap = {url: string | null} | {map: string | null}
+export type MetadataMap = {url: string | null} | {map: string | null} | object
 export type Metadata = MetadataIdentifier | MetadataMap
 
 export type CallTxArg = {
