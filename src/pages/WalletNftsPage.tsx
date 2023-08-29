@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks"
 import { selectNfts, load as loadNfts, loadSuccess as loadNftsSuccess } from "../slices/nftsSlice"
 import { selectWallet } from "../slices/walletSlice"
 import { getAccountNfts, getMetadata, Nft, NftAndMetadata } from "../middleware"
 import Root from "../components/Root";
+import NftCard from "../components/NftCard";
 import WalletBanner from "../components/WalletBanner";
 
 const loadMetadata = async (nft : Nft) => {
@@ -46,28 +47,16 @@ export default function MyNftsPage() {
 
   return (
     <Root title="My NFTs">
-      {wallet.wallet ? (<table>
-        <thead>
-        <tr>
-          <td>Collection</td>
-          <td>Token Id</td>
-          <td>Metadata</td>
-        </tr>
-        </thead>
-        <tbody>
-        {
-          nfts.data && nfts.data.map(({ contract_id, metadata, token_id }: NftAndMetadata) => {
-            return (
-              <tr key={`${contract_id}-${token_id}`}>
-                <td>{contract_id}</td>
-                <td>{token_id}</td>
-                <td>{JSON.stringify(metadata)}</td>
-              </tr>
-            )
-          })
-        }
-        </tbody>
-      </table>) : (<WalletBanner />)}
+      {wallet.wallet ? (
+        <Fragment>
+          {
+            nfts.data && nfts.data.map(({ contract_id, metadata, token_id }: NftAndMetadata) => {
+              return (
+                <NftCard key={`${contract_id}-${token_id}`} contractId={contract_id} tokenId={token_id} metadata={metadata} />
+              )
+            })
+          }
+        </Fragment>) : (<WalletBanner />)}
     </Root>
   );
 }
