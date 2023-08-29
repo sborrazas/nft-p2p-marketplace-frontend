@@ -54,6 +54,7 @@
 
 .Layout-content {
   margin-bottom: 20px;
+  overflow: hidden;
 }
 
 .Layout-footer {
@@ -65,4 +66,23 @@
   margin: 0 auto;
   max-width: 1000px;
   padding: 0 20px;
+}
+
+
+@media (max-width: 800px) {
+  .Layout-headerWrapper {
+    display: block;
+  }
+  .Layout-headerLogo {
+    margin: 0 auto;
+  }
+  .Layout-headerNav {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  .Layout-headerAside {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+  }
 }
