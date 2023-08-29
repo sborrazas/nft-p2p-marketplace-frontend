@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from "../hooks"
 import { getAuctions, Auction } from "../middleware"
 import { load as loadAuctions, loadSuccess as loadAuctionsSuccess, selectAuctions } from '../slices/auctionsSlice';
-import { selectWallet, load as loadWallet, loadSuccess as loadWalletSuccess } from "../slices/walletSlice"
-import { getWallet } from "../aeternity"
+import { selectWallet } from "../slices/walletSlice"
+import Root from "../components/Root";
+import WalletBanner from "../components/WalletBanner";
 
 export default function AllAuctionsPage() {
   const dispatch = useAppDispatch()
@@ -21,26 +22,22 @@ export default function AllAuctionsPage() {
           dispatch(loadAuctionsSuccess({ auctions: response.data }))
         }
       }
-      else {
-        const wallet = await getWallet()
-
-        dispatch(loadWallet())
-        dispatch(loadWalletSuccess({ wallet }))
-      }
     }
 
     void load()
   }, [dispatch, wallet])
 
   return (
-    <ul>
-      {auctions.data && auctions.data.map((auction : Auction) => {
-          const collection = auction.collection
-          const token = auction.token
-          return (
-            <li key={`${collection}-${token}`}>Collection: {collection}, Token: {token}, Price: {auction.price} </li>
-          )
-        })}
-    </ul>
+    <Root title="My Auctions">
+      {wallet.wallet ? (<ul>
+        {auctions.data && auctions.data.map((auction : Auction) => {
+            const collection = auction.collection
+            const token = auction.token
+            return (
+              <li key={`${collection}-${token}`}>Collection: {collection}, Token: {token}, Price: {auction.price} </li>
+            )
+          })}
+      </ul>) : (<WalletBanner />)}
+    </Root>
   );
 }

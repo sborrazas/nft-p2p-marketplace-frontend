@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks"
 import { selectNfts, load as loadNfts, loadSuccess as loadNftsSuccess } from "../slices/nftsSlice"
-import { selectWallet, load as loadWallet, loadSuccess as loadWalletSuccess } from "../slices/walletSlice"
+import { selectWallet } from "../slices/walletSlice"
 import { getAccountNfts, getMetadata, Nft, NftAndMetadata } from "../middleware"
-import { getWallet } from "../aeternity"
+import Root from "../components/Root";
+import WalletBanner from "../components/WalletBanner";
 
 const loadMetadata = async (nft : Nft) => {
   const response = await getMetadata(nft.contract_id, nft.token_id)
@@ -38,23 +39,14 @@ export default function MyNftsPage() {
           dispatch(loadNftsSuccess({ nfts: nftsAndMetadata }))
         }
       }
-      else {
-        const wallet = await getWallet()
-
-        dispatch(loadWallet())
-        dispatch(loadWalletSuccess({ wallet }))
-      }
     }
 
     void load()
-  }, [wallet, dispatch]);
+  }, [wallet.wallet, dispatch]);
 
   return (
-    <div>
-      <h1>
-        NFTs for wallet: {wallet.wallet}
-      </h1>
-      <table>
+    <Root title="My NFTs">
+      {wallet.wallet ? (<table>
         <thead>
         <tr>
           <td>Collection</td>
@@ -75,7 +67,7 @@ export default function MyNftsPage() {
           })
         }
         </tbody>
-      </table>
-    </div>
+      </table>) : (<WalletBanner />)}
+    </Root>
   );
 }

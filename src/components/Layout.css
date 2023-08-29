@@ -1,0 +1,68 @@
+.Layout {
+
+  background:
+  linear-gradient(red, rgba(78, 55, 227, 0.86), transparent),
+  linear-gradient(to top left, rgba(78, 55, 227, 0.86), rgb(231, 107, 160, 0.6), transparent, rgba(78, 55, 227, 0.86)),
+  linear-gradient(.25turn, #8438f8, 20%, transparent, rgba(78, 55, 227, 0.86));
+  background-blend-mode: screen;
+
+
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* Header, Main Content, Footer */
+  grid-template-columns: 1fr; /* Main Content */
+  min-height: 100vh;
+}
+
+.Layout-header {
+  margin-bottom: 30px;
+}
+
+.Layout-headerTitle {
+  display: none;
+}
+.Layout-headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Layout-headerLogo {
+  display: block;
+  width: 250px;
+}
+
+.Layout-headerNav {
+  flex: 1;
+  font-size: 1.08em;
+  padding: 0 2%;
+}
+
+.Layout-headerNavList {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Layout-headerNavItem {
+  display: block;
+  flex: 1;
+  text-align: center;
+}
+
+.Layout-headerLogo {
+  max-width: 100%;
+}
+
+.Layout-content {
+  margin-bottom: 20px;
+}
+
+.Layout-footer {
+  padding: 20px 0;
+  text-align: right;
+}
+
+.Layout-innerContent {
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 0 20px;
+}

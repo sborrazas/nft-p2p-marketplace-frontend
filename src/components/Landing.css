@@ -1,0 +1,31 @@
+.Landing {
+  margin: 0 auto;
+  max-width: 800px;
+  padding-top: 40px;
+}
+
+.Landing-section {
+  height: 500px;
+  margin-bottom: 40px;
+}
+
+.Landing-title {
+  font-size: 60px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.Landing-subtitle {
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 1.5em;
+  margin-bottom: 20px;
+  padding: 0 10%;
+  text-align: center;
+}
+
+.Landing-paragraph {
+  font-size: 1.2em;
+  margin: 30px 0;
+  text-align: center;
+}

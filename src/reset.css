@@ -1,0 +1,120 @@
+/* Reset some default styles */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/* Set default line height and font family */
+body {
+  line-height: 1;
+}
+
+/* Correct block-level display not defined for HTML5 elements */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* Make sure URLs are not underlined by default */
+a {
+  text-decoration: none;
+}
+
+/* Remove list styles (bullets/numbers) */
+ul, ol {
+  list-style: none;
+}
+
+/* Remove default margins from the browser */
+blockquote, q {
+  quotes: none;
+}
+
+/* Reset quote styles */
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* Reset some form element styles */
+input, select {
+  appearance: none;
+  border-radius: 0;
+}
+
+/* Reset button styles */
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* Set default box sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Set images to not affect the line height */
+img {
+  vertical-align: middle;
+}
+
+/* Set responsive images to not exceed their container */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Reset table border-spacing and remove spacing between table cells */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Reset the font size of the <small> element */
+small {
+  font-size: 100%;
+}
+
+/* Reset the font style of the <address> element */
+address {
+  font-style: normal;
+}
+
+/* Reset the appearance of form elements in iOS */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  appearance: none;
+}
+
+/* Reset textarea resizing in some modern browsers */
+textarea {
+  resize: vertical;
+}
+
+/* Apply the universal selector to reset padding and margin */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Reset the default outline behavior on focus */
+*:focus {
+  outline: none;
+}
