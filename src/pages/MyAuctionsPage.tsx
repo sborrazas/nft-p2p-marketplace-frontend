@@ -6,7 +6,7 @@ import { selectWallet } from "../slices/walletSlice"
 import Root from "../components/Root";
 import WalletBanner from "../components/WalletBanner";
 
-export default function AllAuctionsPage() {
+export default function AuctionsPage() {
   const dispatch = useAppDispatch()
   const auctions = useAppSelector(selectAuctions)
   const wallet = useAppSelector(selectWallet)

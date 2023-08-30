@@ -1,0 +1,457 @@
+[
+    {
+      "namespace": {
+        "name": "ListInternal",
+        "typedefs": []
+      }
+    },
+    {
+      "namespace": {
+        "name": "List",
+        "typedefs": []
+      }
+    },
+    {
+      "namespace": {
+        "name": "String",
+        "typedefs": []
+      }
+    },
+    {
+      "contract": {
+        "functions": [
+          {
+            "arguments": [
+              {
+                "name": "_1",
+                "type": "int"
+              }
+            ],
+            "name": "owner",
+            "payable": false,
+            "returns": {
+              "option": [
+                "address"
+              ]
+            },
+            "stateful": false
+          },
+          {
+            "arguments": [
+              {
+                "name": "_1",
+                "type": "address"
+              },
+              {
+                "name": "_2",
+                "type": "int"
+              },
+              {
+                "name": "_3",
+                "type": "bool"
+              }
+            ],
+            "name": "approve",
+            "payable": false,
+            "returns": "unit",
+            "stateful": true
+          },
+          {
+            "arguments": [
+              {
+                "name": "_1",
+                "type": "address"
+              },
+              {
+                "name": "_2",
+                "type": "int"
+              },
+              {
+                "name": "_3",
+                "type": {
+                  "option": [
+                    "string"
+                  ]
+                }
+              }
+            ],
+            "name": "transfer",
+            "payable": false,
+            "returns": "unit",
+            "stateful": true
+          }
+        ],
+        "kind": "contract_interface",
+        "name": "Collection",
+        "payable": false,
+        "typedefs": []
+      }
+    },
+    {
+      "contract": {
+        "event": {
+          "variant": [
+            {
+              "Listing": [
+                "address",
+                "int",
+                "int"
+              ]
+            },
+            {
+              "Cancel": [
+                "address",
+                "int",
+                "int"
+              ]
+            },
+            {
+              "Offer": [
+                "address",
+                "int",
+                "int"
+              ]
+            },
+            {
+              "Trade": [
+                "address",
+                "int",
+                "int"
+              ]
+            },
+            {
+              "Withdraw": [
+                "address",
+                "int"
+              ]
+            }
+          ]
+        },
+        "functions": [
+          {
+            "arguments": [
+              {
+                "name": "mods",
+                "type": {
+                  "list": [
+                    "address"
+                  ]
+                }
+              }
+            ],
+            "name": "init",
+            "payable": false,
+            "returns": "MarketPlace.state",
+            "stateful": true
+          },
+          {
+            "arguments": [],
+            "name": "balance",
+            "payable": false,
+            "returns": "int",
+            "stateful": false
+          },
+          {
+            "arguments": [
+              {
+                "name": "col",
+                "type": "Collection"
+              }
+            ],
+            "name": "allow_collection",
+            "payable": true,
+            "returns": {
+              "tuple": []
+            },
+            "stateful": true
+          },
+          {
+            "arguments": [
+              {
+                "name": "col",
+                "type": "Collection"
+              }
+            ],
+            "name": "block_collection",
+            "payable": false,
+            "returns": {
+              "tuple": []
+            },
+            "stateful": true
+          },
+          {
+            "arguments": [
+              {
+                "name": "to",
+                "type": "address"
+              }
+            ],
+            "name": "withdraw",
+            "payable": false,
+            "returns": {
+              "tuple": []
+            },
+            "stateful": true
+          },
+          {
+            "arguments": [
+              {
+                "name": "col",
+                "type": "Collection"
+              },
+              {
+                "name": "token_id",
+                "type": "int"
+              },
+              {
+                "name": "ref_price",
+                "type": "int"
+              }
+            ],
+            "name": "put_listing",
+            "payable": false,
+            "returns": {
+              "tuple": []
+            },
+            "stateful": true
+          },
+          {
+            "arguments": [
+              {
+                "name": "col",
+                "type": "Collection"
+              },
+              {
+                "name": "token_id",
+                "type": "int"
+              }
+            ],
+            "name": "get_listing",
+            "payable": false,
+            "returns": {
+              "option": [
+                {
+                  "tuple": [
+                    "int",
+                    "address"
+                  ]
+                }
+              ]
+            },
+            "stateful": false
+          },
+          {
+            "arguments": [],
+            "name": "get_listings",
+            "payable": false,
+            "returns": {
+              "map": [
+                "MarketPlace.nft",
+                {
+                  "tuple": [
+                    "int",
+                    "address"
+                  ]
+                }
+              ]
+            },
+            "stateful": false
+          },
+          {
+            "arguments": [
+              {
+                "name": "col",
+                "type": "Collection"
+              },
+              {
+                "name": "token_id",
+                "type": "int"
+              }
+            ],
+            "name": "cancel_listing",
+            "payable": false,
+            "returns": {
+              "tuple": []
+            },
+            "stateful": true
+          },
+          {
+            "arguments": [
+              {
+                "name": "col",
+                "type": "Collection"
+              },
+              {
+                "name": "token_id",
+                "type": "int"
+              }
+            ],
+            "name": "put_offer",
+            "payable": true,
+            "returns": {
+              "tuple": []
+            },
+            "stateful": true
+          },
+          {
+            "arguments": [
+              {
+                "name": "col",
+                "type": "Collection"
+              },
+              {
+                "name": "token_id",
+                "type": "int"
+              }
+            ],
+            "name": "withdraw_offer",
+            "payable": false,
+            "returns": {
+              "tuple": []
+            },
+            "stateful": true
+          },
+          {
+            "arguments": [
+              {
+                "name": "col",
+                "type": "Collection"
+              },
+              {
+                "name": "token_id",
+                "type": "int"
+              }
+            ],
+            "name": "get_offer",
+            "payable": false,
+            "returns": {
+              "option": [
+                {
+                  "tuple": [
+                    "int",
+                    "address"
+                  ]
+                }
+              ]
+            },
+            "stateful": false
+          },
+          {
+            "arguments": [],
+            "name": "get_offers",
+            "payable": false,
+            "returns": {
+              "map": [
+                "MarketPlace.nft",
+                {
+                  "tuple": [
+                    "int",
+                    "address"
+                  ]
+                }
+              ]
+            },
+            "stateful": false
+          },
+          {
+            "arguments": [
+              {
+                "name": "col",
+                "type": "Collection"
+              },
+              {
+                "name": "token_id",
+                "type": "int"
+              }
+            ],
+            "name": "accept_offer",
+            "payable": false,
+            "returns": {
+              "tuple": []
+            },
+            "stateful": true
+          }
+        ],
+        "kind": "contract_main",
+        "name": "MarketPlace",
+        "payable": true,
+        "state": {
+          "record": [
+            {
+              "name": "listings",
+              "type": {
+                "map": [
+                  "MarketPlace.nft",
+                  {
+                    "tuple": [
+                      "int",
+                      "address"
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "offers",
+              "type": {
+                "map": [
+                  "MarketPlace.nft",
+                  {
+                    "tuple": [
+                      "int",
+                      "address"
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "moderators",
+              "type": {
+                "list": [
+                  "address"
+                ]
+              }
+            },
+            {
+              "name": "allowedCols",
+              "type": {
+                "map": [
+                  "address",
+                  "address"
+                ]
+              }
+            },
+            {
+              "name": "blockedCols",
+              "type": {
+                "map": [
+                  "address",
+                  "address"
+                ]
+              }
+            }
+          ]
+        },
+        "typedefs": [
+          {
+            "name": "nft",
+            "typedef": {
+              "record": [
+                {
+                  "name": "token_id",
+                  "type": "int"
+                },
+                {
+                  "name": "collection",
+                  "type": "Collection"
+                }
+              ]
+            },
+            "vars": []
+          }
+        ]
+      }
+    }
+  ]
+  

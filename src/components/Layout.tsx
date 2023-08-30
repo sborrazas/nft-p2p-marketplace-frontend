@@ -41,6 +41,7 @@ export default function Layout({ children, logoSrc, title, isLanding, wallet,onW
                 <li className="Layout-headerNavItem"><Link to="/">Overview</Link></li>
                 <li className="Layout-headerNavItem"><Link to="/auctions">My Auctions</Link></li>
                 <li className="Layout-headerNavItem"><Link to="/nfts">My NFTs</Link></li>
+                <li className="Layout-headerNavItem"><Link to="/offers">Offers</Link></li>
                 <li className="Layout-headerNavItem"><Link to="/all-auctions">All Auctions</Link></li>
               </ul>
             </nav>

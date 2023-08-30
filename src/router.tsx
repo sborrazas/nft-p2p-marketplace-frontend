@@ -6,6 +6,7 @@ import { Route } from "react-router"
 
 import Home from "./pages/Home"
 import AllAuctionsPage from './pages/AllAuctionsPage'
+import OffersPage from './pages/OffersPage'
 import MyAuctionsPage from './pages/MyAuctionsPage'
 import WalletNftsPage from "./pages/WalletNftsPage"
 
@@ -18,6 +19,7 @@ export default createBrowserRouter(
     <Route path="/">
       <Route index element={<Home />} />
       <Route path="/nfts" element={<WalletNftsPage />} />
+      <Route path="/offers" element={<OffersPage />} />
       <Route path="/auctions" element={<MyAuctionsPage />} />
       <Route path="/all-auctions" element={<AllAuctionsPage />} />
       <Route path="*" element={<FallbackRoute />} />
