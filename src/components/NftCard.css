@@ -18,8 +18,8 @@
   margin-bottom: 5px;
 }
 
-.NftCard-contract {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.NftCard-image {
+  max-width: 20%;
 }
+
+

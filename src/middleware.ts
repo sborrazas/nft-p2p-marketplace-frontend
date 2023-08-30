@@ -12,49 +12,69 @@ export type Hash = string
 export type TokenId = number
 
 export type Nft = {
-  contract_id: Account,
-  owner_id: Account,
-  token_id: TokenId,
+  contract_id: Account
+  owner_id: Account
+  token_id: TokenId
+}
+
+export type Metainfo = {
+  contract_id: Account
+  name: string
+  symbol: string
 }
 
 export type NftAndMetadata = Nft & {
-  metadata: Metadata
+  contractName: string
+  mediaUrl: string
+  tokenName: string
 }
 
-export type MetadataIdentifier = string | number
-export type MetadataMap = {url: string | null} | {map: string | null} | object
-export type Metadata = MetadataIdentifier | MetadataMap
+// export type MetadataIdentifier = {id: string | number | null} 
+export type MetadataUrl = {url: string | null} 
+export type MetadataMap = {map: {name: string, media_url: string} | null}
+export type Metadata = MetadataUrl | MetadataMap
 
 export type CallTxArg = {
-  type: string,
+  type: string
   value: string | number
 }
 
 export type CallTx = {
-  contract_id: Account,
+  contract_id: Account
   arguments: Array<CallTxArg>
 }
 
 export type ResponseAuction = {
-  block_hash: Hash,
-  height: number,
-  internal_source: boolean,
-  source_tx_hash: Hash,
-  source_tx_type: string,
+  block_hash: Hash
+  height: number
+  internal_source: boolean
+  source_tx_hash: Hash
+  source_tx_type: string
   tx: CallTx
 }
 
 export type Auction = {
-  height: number,
-  marketplace: Account,
-  collection: Account,
+  height: number
+  marketplace: Account
+  collection: Account
   token: TokenId
   price: number
 }
 
 export const WALLET="ak_ZzSn4fxw1VUfiiZmwtVi8pHaLVsMj8HerNZ1L9nmwFF4vvccd"
 const MIDDLEWARE_URL = "https://staging.mdw.testnet.aeternity.io/mdw"
-const MARKETPLACE = "ct_2McYmJxUXksgHRNH5ziZxepNa76sNB3JpNSc2VJQSkjYxafHbT"
+const MARKETPLACE = "ct_2TSMsytURDWTnXtTwCnMhBAwP6epq3DT98Fe9GXksszwKn3Z6V"
+
+export const getMetainfo = async (contractId: Account): Promise<Response<Metainfo>> => {
+  const response = await fetch(`${MIDDLEWARE_URL}/v2/aex141/${contractId}`)
+  const content = await response.json()
+  if (response.ok) {
+    // const data = {contractId: content.contract_id, name: content.name, symbol: content.symbol }
+    return { success: true, data: content}
+  } else {
+    return { success: false, error: content.error }
+  }
+}
 
 export const getMetadata = async (contractId: Account, tokenId : TokenId): Promise<Response<Metadata>> => {
   const response = await fetch(`${MIDDLEWARE_URL}/v2/aex141/${contractId}/metadata/${tokenId}`)
