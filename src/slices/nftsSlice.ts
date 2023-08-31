@@ -1,10 +1,10 @@
 import { createSlice, createAction } from "@reduxjs/toolkit"
 import { RootState } from "../store"
-import { NftAndMetadata } from "../middleware"
+import { NftAndOffer } from "../marketplace"
 
 type NftsState = {
   isLoading: boolean
-  data: Array<NftAndMetadata>
+  data: Array<NftAndOffer>
 }
 
 export const initialState: NftsState = {
@@ -13,7 +13,7 @@ export const initialState: NftsState = {
 }
 
 type LoadSuccessParams = {
-  nfts: Array<NftAndMetadata>
+  nfts: Array<NftAndOffer>
 }
 
 export const load = createAction("nfts/load")

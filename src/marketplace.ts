@@ -9,8 +9,8 @@ import { AeSdkAepp, Node, CompilerHttp } from "@aeternity/aepp-sdk"
 export type Account = string
 
 export type Offer = {
-  account: Account
-  value: number
+  bidAccount: Account
+  bidValue: number
 }
 
 export type NftAndOffer = NftAndMetadata & Offer
@@ -37,15 +37,15 @@ export class Marketplace {
 
     if (res.result?.returnType === "ok") {
       const [value, account] = res.decodedResult;
-      return {account: account, value: value.toString()}
+      return {bidAccount: account, bidValue: value.toString()}
     } else {
-      return {account: "ak_", value: -1}
+      return {bidAccount: "ak_", bidValue: -1}
     }
   }
 
   async getOfferFromOffers(nft : Nft): Promise<Offer> {
     const call = await this.contract.get_offers()
-    let offer = {account: "ak_", value: -1}
+    let offer = {bidAccount: "ak_", bidValue: -1}
 
     if (call.result?.returnType === "ok") {
       const offersKeys : Array<NftOfferKey> = Array.from(call.decodedResult.keys());
@@ -57,7 +57,7 @@ export class Marketplace {
       if (typeof offerKey === "object") {
         const nftOffers = call.decodedResult
         const [value, account] = nftOffers.get(offerKey)
-        offer = {account: account, value: value.toString()}
+        offer = {bidAccount: account, bidValue: value.toString()}
       }
     }
 
@@ -69,9 +69,9 @@ export class Marketplace {
 
     if (res.result?.returnType === "ok") {
       const [value, account] = res.decodedResult;
-      return {account: account, value: value.toString()}
+      return {bidAccount: account, bidValue: value.toString()}
     } else {
-      return {account: "ak_", value: -1}
+      return {bidAccount: "ak_", bidValue: -1}
     }
   }
 }

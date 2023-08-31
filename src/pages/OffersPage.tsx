@@ -15,10 +15,10 @@ const getNftsWithOffers = async(address : Account) => {
   const nftsAndOffers = await Promise.all(nftsAndMetadata.map(async (nft : NftAndMetadata): Promise<NftAndOffer> => {
     const offer = await marketplace.getOfferFromOffers(nft);
 
-    return { account: offer.account, value: offer.value, ...nft }
+    return { bidAccount: offer.bidAccount, bidValue: offer.bidValue, ...nft }
   }));
 
-  return nftsAndOffers.filter(({value}) => value !== -1)
+  return nftsAndOffers.filter(({bidValue}) => bidValue !== -1)
 }
 
 export default function OffersPage() {
@@ -43,9 +43,9 @@ export default function OffersPage() {
       {wallet.wallet ? (
         <Fragment>
           {
-            offers.data && offers.data.map(({ account, contract_id, contractName, tokenName, token_id, value }: NftAndOffer) => {
+            offers.data && offers.data.map(({ bidAccount, contract_id, contractName, tokenName, token_id, bidValue }: NftAndOffer) => {
               return (
-                <OfferCard key={`${contract_id}-${token_id}`} account={account} value={value} contractId={contract_id} contractName={contractName} tokenId={token_id} tokenName={tokenName} />
+                <OfferCard key={`${contract_id}-${token_id}`} account={bidAccount} value={bidValue} contractId={contract_id} contractName={contractName} tokenId={token_id} tokenName={tokenName} />
               )
             })
           }
