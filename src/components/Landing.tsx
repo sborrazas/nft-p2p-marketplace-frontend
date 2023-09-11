@@ -4,7 +4,7 @@ export default function Landing() {
   return (
     <div className="Landing">
       <header className="Landing-header">
-        <h2 className="Landing-title">Powerful NFT management for everyone</h2>
+        <h2 className="Landing-title">Powerful NFT trading for everyone</h2>
         <h3 className="Landing-subtitle">Efficiently manage, transfer, and showcase your assets. Elevate your NFT management experience with the ultimate peer-to-peer interactions.</h3>
       </header>
 

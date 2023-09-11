@@ -63,7 +63,7 @@ export type Auction = {
 
 export const WALLET="ak_ZzSn4fxw1VUfiiZmwtVi8pHaLVsMj8HerNZ1L9nmwFF4vvccd"
 export const MARKETPLACE = "ct_2TSMsytURDWTnXtTwCnMhBAwP6epq3DT98Fe9GXksszwKn3Z6V"
-const MIDDLEWARE_URL = "https://staging.mdw.testnet.aeternity.io/mdw"
+const MIDDLEWARE_URL = "https://testnet.aeternity.io/mdw"
 
 export const getMetainfo = async (contractId: Account): Promise<Response<Metainfo>> => {
   const response = await fetch(`${MIDDLEWARE_URL}/v2/aex141/${contractId}`)
